@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fbeaea;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+        button {
+            background-color: #800000;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #a10000;
+        }
+        .summary {
+            margin-top: 25px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .spinner {
+            border: 4px solid #e1a1a1;
+            border-radius: 50%;
+            border-top: 4px solid #800000;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .description {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        .how-it-works {
+            background-color: #ffe3e3;
+            padding: 15px;
+            border-left: 5px solid #800000;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+    </style>
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Summarizer</h1>
+
+        <div class="how-it-works">
+            <h2>How It Works</h2>
+            <p>This summarizer uses a machine learning model called <strong>BART</strong> (Bidirectional and Auto-Regressive Transformers) to generate meaningful summaries from long pieces of text.</p>
+            <p>It's been trained on huge text datasets to understand language patterns. Just paste your content below, and click the button to get a quick summary!</p>
+            <p><strong>Developed & customized by: Umang Jeswani</strong></p>
+        </div>
+
+        <div class="description">
+            <p>Paste your content below and hit <strong>Summarize</strong> to get a shorter version of it:</p>
+        </div>
+
+        <!-- Form -->
+        <form method="POST" onsubmit="showLoading()">
+            <textarea name="text" rows="10" placeholder="Enter your text here..."></textarea>
+            <br><br>
+            <button type="submit">Summarize</button>
+        </form>
+
+        <!-- Loading animation -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Summarizing your text, please wait...</p>
+        </div>
+
+        <!-- Summary output -->
+        {% if summary %}
+        <div class="summary">
+            <h2>Summary:</h2>
+            <p>{{ summary }}</p>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
