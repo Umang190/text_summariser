@@ -9,69 +9,76 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #fbeaea;
+            background-color: #fdd5d5; /* Light red background */
         }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
             background: white;
-            padding: 25px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
+
         textarea {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
             resize: none;
         }
+
         button {
             background-color: #800000;
             color: white;
-            padding: 10px 25px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: bold;
         }
+
         button:hover {
-            background-color: #a10000;
+            background-color: #800000;
         }
+
         .summary {
-            margin-top: 25px;
-            font-size: 17px;
-            line-height: 1.6;
+            margin-top: 20px;
+            font-size: 18px;
         }
+
         .loading {
             display: none;
             margin-top: 20px;
             text-align: center;
         }
+
         .spinner {
-            border: 4px solid #e1a1a1;
+            border: 4px solid #c07d7d;
             border-radius: 50%;
-            border-top: 4px solid #800000;
+            border-top: 4px solid #FF7F7E;
             width: 30px;
             height: 30px;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
         .description {
             margin-bottom: 20px;
             font-size: 16px;
-            color: #333;
+            color: #555;
         }
+
         .how-it-works {
-            background-color: #ffe3e3;
+            background-color: #e3a8a8;
             padding: 15px;
             border-left: 5px solid #800000;
-            margin-bottom: 25px;
-            font-size: 15px;
+            margin-bottom: 20px;
         }
     </style>
     <script>
@@ -84,38 +91,34 @@
     <div class="container">
         <h1>Text Summarizer</h1>
 
+        <!-- Description of how the app works -->
         <div class="how-it-works">
-            <h2>How It Works</h2>
-            <p>This summarizer uses a machine learning model called <strong>BART</strong> (Bidirectional and Auto-Regressive Transformers) to generate meaningful summaries from long pieces of text.</p>
-            <p>It's been trained on huge text datasets to understand language patterns. Just paste your content below, and click the button to get a quick summary!</p>
-            <p><strong>Developed & customized by: Umang Jeswani</strong></p>
+            <h2>How the App Works</h2>
+            <p>This app uses <strong>supervised machine learning</strong> to summarize long pieces of text. It is powered by the <strong>BART</strong> which is Bidirectional and Auto-Regressive Transformers model, which has been trained on a large amount of text data. The app takes the user input and produces a summary based on the previous patterns from the data.</p>
+            <p>Enter your text, and the app will return a summary to your prompt. For the best results, try entering text between 500 and 1,000 words. Thanks! <strong>- Zain</strong></p>
         </div>
 
+        <!-- Form and loading spinner -->
         <div class="description">
-            <p>Paste your content below and hit <strong>Summarize</strong> to get a shorter version of it:</p>
+            <p>Enter your text below and click "Summarize" to get a summary:</p>
         </div>
-
-        <!-- Form -->
         <form method="POST" onsubmit="showLoading()">
             <textarea name="text" rows="10" placeholder="Enter your text here..."></textarea>
             <br><br>
             <button type="submit">Summarize</button>
         </form>
 
-        <!-- Loading animation -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
             <p>Summarizing your text, please wait...</p>
         </div>
 
-        <!-- Summary output -->
         {% if summary %}
         <div class="summary">
             <h2>Summary:</h2>
             <p>{{ summary }}</p>
         </div>
         {% endif %}
-
     </div>
 </body>
 </html>
